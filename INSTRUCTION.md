@@ -1,11 +1,11 @@
 # How to Run MySQL Container with a Volume Attached
 Use the following command:
-docker run --name mysql-container -d -p 3306:3306 --name mysql -v my-sql-data:/var/lib/mysql mysql-local:1.0.0
+docker run --name mysql-container -d -p 3306:3306 -v my-sql-data:/var/lib/mysql mysql-local:1.0.0
 
 # How to run an App container which will connect to a MySQL db container
 1. Find MySQL container IP:
 docker inspect mysql-container | grep "IPAddress"
-2. Update file todolist -> settings.py line 83 
+2. Update file todolist -> settings.py line 83(set HOST to the MySQL container's IP which you received in step 1)
 3. Run an App container
 docker run -d --name app -p 8080:8080 todoapp:2.0.0
 the application will be available in the browser
